@@ -8,7 +8,7 @@
  */
 
 const Config = use('Config')
-const { graphqlAdonis } = require('apollo-server-adonis')
+const { graphqlAdonis, graphiqlAdonis } = require('apollo-server-adonis')
 const { makeExecutableSchema } = require('graphql-tools')
 const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas')
 
@@ -25,4 +25,5 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 module.exports = {
   schema,
   graphql: graphqlAdonis,
+  graphiql: graphiqlAdonis,
 }
