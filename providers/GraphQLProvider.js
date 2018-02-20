@@ -19,7 +19,6 @@ class GraphQLProvider extends ServiceProvider {
   $registerCommands () {
     this.app.bind('GraphQL/Commands/Make:Schema', () => require('../commands/MakeSchema'))
     this.app.bind('GraphQL/Commands/Make:Resolvers', () => require('../commands/MakeResolvers'))
-
   }
 
   /**
