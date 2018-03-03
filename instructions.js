@@ -10,7 +10,7 @@
 const { join } = require('path')
 
 module.exports = async function (cli) {
-  await cli.makeConfig('graphql.js', path.join(__dirname, './config/graphql.js'))
+  await cli.makeConfig('graphql.js', join(__dirname, './config/graphql.js'))
     .catch((e) => {})
   cli.command.completed('create', 'config/graphql.js')
 }
