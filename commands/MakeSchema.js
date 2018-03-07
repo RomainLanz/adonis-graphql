@@ -45,7 +45,7 @@ class MakeSchema extends Command {
     const filePath = join(Config.get('graphql.schema'), _.upperFirst(_.camelCase(name))) + '.js'
     const templateContent = await this.readFile(templatePath, 'utf-8')
 
-    await this.generateFile(filePath, templatePath, { name })
+    await this.generateFile(filePath, templateContent, { name })
 
     const createdFile = filePath.replace(process.cwd(), '').replace(sep, '')
     console.log(`${this.icon('success')} ${this.chalk.green('create')}  ${createdFile}`)
