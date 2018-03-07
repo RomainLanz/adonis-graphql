@@ -18,9 +18,11 @@ You can bind the GraphQL endpoint directly from your `routes.js` file.
 
 ```js
 const Route = use('Route')
-const { graphql, schema } = require('adonis-graphql')
+const GraphQLServer = use('Adonis/Addons/GraphQLServer')
 
-Route.post('/', graphql({ schema }))
+Route.post('/', function (context) {
+  return GraphQLServer.handle(context)
+})
 ```
 
 ## Create Schema
@@ -46,5 +48,33 @@ module.exports = {
   Query: {
     hello: () => 'World'
   }
+}
+```
+
+## Throw an error
+
+GraphQL handles differently errors. To provide a GraphQL Compliant error we recommend you to use the `GraphQLError` class.
+
+```js
+// app/Resolvers/Hello.js
+
+const GraphQLError = use('Adonis/Addons/GraphQLError')
+
+module.exports = {
+  Query: {
+    hello: function () {
+      throw new GraphQLError('message', [...])
+    }
+  }
+}
+```
+
+If you are using the Adonis Validation Provider your code must look like the example bellow.
+
+```js
+const validation = await validateAll(data, rules)
+
+if (validation.fails()) {
+  throw new GraphError('Validation Failed', validation.messages())
 }
 ```
