@@ -8,6 +8,7 @@
  */
 
 const Config = use('Config')
+const GraphError = require('./Errors')
 const { graphqlAdonis, graphiqlAdonis } = require('apollo-server-adonis')
 const { makeExecutableSchema } = require('graphql-tools')
 const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas')
@@ -22,8 +23,16 @@ const resolvers = mergeResolvers(
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
+function handleError (error) {
+  return {
+    message: error.message,
+    state: error.originalError && error.originalError.state,
+    locations: error.locations,
+    path: error.path,
+  }
+}
+
 module.exports = {
-  schema,
-  graphql: graphqlAdonis,
-  graphiql: graphiqlAdonis,
+  GraphError,
+  graphql: (context, options = {}) => graphqlAdonis({ schema, context, formatError: handleError, ...options})(context)
 }
