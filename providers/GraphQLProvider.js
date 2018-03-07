@@ -8,6 +8,8 @@
  */
 
 const { ServiceProvider } = require('@adonisjs/fold')
+const GraphQLError = require('../src/Errors')
+const GraphQLServer = require('../src/Server')
 
 class GraphQLProvider extends ServiceProvider {
   /**
@@ -19,6 +21,24 @@ class GraphQLProvider extends ServiceProvider {
   $registerCommands () {
     this.app.bind('GraphQL/Commands/Make:Schema', () => require('../commands/MakeSchema'))
     this.app.bind('GraphQL/Commands/Make:Resolvers', () => require('../commands/MakeResolvers'))
+  }
+
+  /**
+   * Registers providers for all the GraphQL related
+   * classes.
+   *
+   * @return {void}
+   */
+  $registerAlias () {
+    this.app.singleton('Adonis/Addons/GraphQLServer', () => {
+      const Config = use('Config')
+
+      return new GraphQLServer(Config)
+    })
+
+    this.app.singleton('Adonis/Addons/GraphQLError', () => {
+      return GraphQLError
+    })
   }
 
   /**
@@ -39,6 +59,8 @@ class GraphQLProvider extends ServiceProvider {
     const ace = require('@adonisjs/ace')
     ace.addCommand('GraphQL/Commands/Make:Schema')
     ace.addCommand('GraphQL/Commands/Make:Resolvers')
+
+    this.$registerAlias()
   }
 }
 
