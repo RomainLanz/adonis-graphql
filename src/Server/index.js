@@ -16,7 +16,6 @@ class GraphQLServer {
     const typeDefs = fileLoader(config.get('graphql.schema'))
     const resolvers = fileLoader(config.get('graphql.resolvers'))
     this.$schema = makeExecutableSchema({ typeDefs, resolvers })
-    console.log('HERE')
   }
 
   $handleError (error) {
