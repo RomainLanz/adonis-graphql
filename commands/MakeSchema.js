@@ -42,7 +42,7 @@ class MakeSchema extends Command {
    */
   async handle ({ name }) {
     const templatePath = join(__dirname, '../templates/Schema.mustache')
-    const filePath = join(Config.get('graphql.schema'), _.upperFirst(_.camelCase(name))) + '.js'
+    const filePath = join(Config.get('graphql.schema'), _.upperFirst(_.camelCase(name))) + '.graphql'
     const templateContent = await this.readFile(templatePath, 'utf-8')
 
     await this.generateFile(filePath, templateContent, { name })
