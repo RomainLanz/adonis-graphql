@@ -10,7 +10,7 @@ The package must be installed by using `adonis` command.
 > adonis install adonis-graphql
 ```
 
-You can use directly `npm` or `yarn` but the instructions (`instructions.js` and `instructions.md`) will not be displayed and runned.
+You can use directly `npm` or `yarn` but the instructions (`instructions.js` and `instructions.md`) will not be displayed and ran.
 
 > :warning: This package requires `@adonisjs/bodyparser` to be installed.
 
