@@ -24,8 +24,12 @@ In this example, we are using the `/` route to handle all graphql query.
 const Route = use('Route')
 const GraphQLServer = use('Adonis/Addons/GraphQLServer')
 
+const graphqlAdonisOptions = {
+  debug: false
+}
+
 Route.post('/', function (context) {
-  return GraphQLServer.handle(context)
+  return GraphQLServer.handle(context, graphqlAdonisOptions)
 })
 ```
 
