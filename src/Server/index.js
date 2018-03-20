@@ -15,6 +15,7 @@ class GraphQLServer {
   constructor (config) {
     const typeDefs = mergeTypes(fileLoader(config.get('graphql.schema'), { recursive: true }))
     const resolvers = mergeResolvers(fileLoader(config.get('graphql.resolvers')))
+
     this.$schema = makeExecutableSchema({ typeDefs, resolvers })
   }
 
@@ -24,7 +25,7 @@ class GraphQLServer {
       state: error.originalError && error.originalError.state,
       locations: error.locations,
       path: error.path,
-   }
+    }
   }
 
   handle (context, options = {}) {
@@ -32,7 +33,7 @@ class GraphQLServer {
       context,
       schema: this.$schema,
       formatError: this.$handleError,
-      ...options
+      ...options,
     })(context)
   }
 }
