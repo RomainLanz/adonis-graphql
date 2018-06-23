@@ -7,7 +7,7 @@
  * @copyright Slynova - Romain Lanz <romain.lanz@slynova.ch>
  */
 
-const { graphqlAdonis } = require('apollo-server-adonis')
+const { graphqlAdonis, graphiqlAdonis } = require('apollo-server-adonis')
 const { makeExecutableSchema } = require('graphql-tools')
 const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas')
 
@@ -34,6 +34,12 @@ class GraphQLServer {
       schema: this.$schema,
       formatError: this.$handleError,
       ...options,
+    })(context)
+  }
+
+  handleUI (context, options = {}) {
+    return graphiqlAdonis({
+      ...options
     })(context)
   }
 }

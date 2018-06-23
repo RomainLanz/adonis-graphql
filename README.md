@@ -31,6 +31,10 @@ const graphqlAdonisOptions = {
 Route.post('/', function (context) {
   return GraphQLServer.handle(context, graphqlAdonisOptions)
 })
+
+Route.get('/graphiql', (context) => {
+  return GraphQLServer.handleUI(context, { endpointURL: '/' })
+})
 ```
 
 ## Create Schema
