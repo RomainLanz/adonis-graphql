@@ -60,6 +60,7 @@ class GraphQLProvider extends ServiceProvider {
     const ace = require('@adonisjs/ace')
     ace.addCommand('GraphQL/Commands/Make:Schema')
     ace.addCommand('GraphQL/Commands/Make:Resolvers')
+    ace.addCommand('GraphQL/Commands/Make:Directives')
 
     this.$registerAlias()
   }
