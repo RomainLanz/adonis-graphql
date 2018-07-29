@@ -12,7 +12,7 @@ const Config = use('Config')
 const { join, sep } = require('path')
 const { Command } = require('@adonisjs/ace')
 
-class MakeResolvers extends Command {
+class MakeDirectives extends Command {
   /**
    * Command signature required by ace.
    *
