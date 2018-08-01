@@ -21,6 +21,7 @@ class GraphQLProvider extends ServiceProvider {
   $registerCommands () {
     this.app.bind('GraphQL/Commands/Make:Schema', () => require('../commands/MakeSchema'))
     this.app.bind('GraphQL/Commands/Make:Resolvers', () => require('../commands/MakeResolvers'))
+    this.app.bind('GraphQL/Commands/Make:Directives', () => require('../commands/MakeDirectives'))
   }
 
   /**
@@ -59,6 +60,7 @@ class GraphQLProvider extends ServiceProvider {
     const ace = require('@adonisjs/ace')
     ace.addCommand('GraphQL/Commands/Make:Schema')
     ace.addCommand('GraphQL/Commands/Make:Resolvers')
+    ace.addCommand('GraphQL/Commands/Make:Directives')
 
     this.$registerAlias()
   }

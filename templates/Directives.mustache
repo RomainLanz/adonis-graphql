@@ -1,0 +1,9 @@
+'use strict'
+
+module.exports = {
+  directive (next, src, args, context) {
+    return next().then((value) => {
+      // reutrn value
+    })
+  }
+}
