@@ -52,4 +52,4 @@ class MakeDirectives extends Command {
   }
 }
 
-module.exports = MakeSchema
+module.exports = MakeDirectives
