@@ -22,7 +22,7 @@ In this example, we are using the `/` route to handle all graphql query.
 
 ```js
 const Route = use('Route')
-const GraphQLServer = use('Adonis/Addons/GraphQLServer')
+const GraphQLServer = use('GraphQLServer')
 
 const graphqlAdonisOptions = {
   debug: false
@@ -71,7 +71,7 @@ To provide a GraphQL Compliant error we recommend you to use the `GraphQLError` 
 ```js
 // app/Resolvers/Hello.js
 
-const GraphQLError = use('Adonis/Addons/GraphQLError')
+const GraphQLError = use('GraphQLError')
 
 module.exports = {
   Query: {
