@@ -24,17 +24,23 @@ In this example, we are using the `/` route to handle all graphql query.
 const Route = use('Route')
 const GraphQLServer = use('GraphQLServer')
 
-const graphqlAdonisOptions = {
-  debug: false
-}
-
-Route.post('/', function (context) {
-  return GraphQLServer.handle(context, graphqlAdonisOptions)
+Route.post('/', (context) => {
+  return GraphQLServer.handle(context)
 })
 
 Route.get('/graphiql', (context) => {
-  return GraphQLServer.handleUI(context, { endpointURL: '/' })
+  return GraphQLServer.handleUI(context)
 })
+
+// or add options (example)
+Route.get("/graphiql", (context) => {
+  return GraphQLServer.handleUI(context, {
+    passHeader: `'Authorization': '${context.request.header("Authorization")}'`
+  })
+})
+
+// or change options in file `config/graphql.js`
+
 ```
 
 ## Create Schema
