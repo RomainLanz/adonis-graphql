@@ -35,10 +35,12 @@ class GraphQLProvider extends ServiceProvider {
 
       return new GraphQLServer(Config)
     })
+    this.app.alias("Adonis/Addons/GraphQLServer", "GraphQLServer")
 
     this.app.singleton('Adonis/Addons/GraphQLError', () => {
       return GraphQLError
     })
+    this.app.alias("Adonis/Addons/GraphQLError", "GraphQLError")
   }
 
   /**

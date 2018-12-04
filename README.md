@@ -22,19 +22,25 @@ In this example, we are using the `/` route to handle all graphql query.
 
 ```js
 const Route = use('Route')
-const GraphQLServer = use('Adonis/Addons/GraphQLServer')
+const GraphQLServer = use('GraphQLServer')
 
-const graphqlAdonisOptions = {
-  debug: false
-}
-
-Route.post('/', function (context) {
-  return GraphQLServer.handle(context, graphqlAdonisOptions)
+Route.post('/', (context) => {
+  return GraphQLServer.handle(context)
 })
 
 Route.get('/graphiql', (context) => {
-  return GraphQLServer.handleUI(context, { endpointURL: '/' })
+  return GraphQLServer.handleUI(context)
 })
+
+// or add options (example)
+Route.get("/graphiql", (context) => {
+  return GraphQLServer.handleUI(context, {
+    passHeader: `'Authorization': '${context.request.header("Authorization")}'`
+  })
+})
+
+// or change options in file `config/graphql.js`
+
 ```
 
 ## Create Schema
@@ -71,7 +77,7 @@ To provide a GraphQL Compliant error we recommend you to use the `GraphQLError` 
 ```js
 // app/Resolvers/Hello.js
 
-const GraphQLError = use('Adonis/Addons/GraphQLError')
+const GraphQLError = use('GraphQLError')
 
 module.exports = {
   Query: {
