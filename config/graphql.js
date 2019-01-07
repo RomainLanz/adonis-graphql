@@ -4,7 +4,12 @@ const { join } = require('path')
 
 module.exports = {
 
-  schema: join(__dirname, '../app/Schema'),
+  options: {
+    debug: false,
+    endpointURL: "/"
+  },
 
-  resolvers: join(__dirname, '../app/Resolvers')
-}
+  schema: join(__dirname, "../app/Schema"),
+
+  resolvers: join(__dirname, "../app/Resolvers")
+};

@@ -4,29 +4,43 @@ Adonis GraphQL is a wrapper around [apollo-server-adonis](https://github.com/apo
 
 ## Setup
 
-The package must be installed from npm using `adonis` command.
+The package must be installed by using `adonis` command.
 
 ```bash
 > adonis install adonis-graphql
 ```
 
-> :warning: This package requires `@adonisjs/bodyparser`.
+You can use directly `npm` or `yarn` but the instructions (`instructions.js` and `instructions.md`) will not be displayed and ran.
+
+> :warning: This package requires `@adonisjs/bodyparser` to be installed.
 
 ## Bind GraphQL Endpoint
 
 You can bind the GraphQL endpoint directly from your `routes.js` file.
 
+In this example, we are using the `/` route to handle all graphql query.
+
 ```js
 const Route = use('Route')
-const GraphQLServer = use('Adonis/Addons/GraphQLServer')
+const GraphQLServer = use('GraphQLServer')
 
-Route.post('/', function (context) {
+Route.post('/', (context) => {
   return GraphQLServer.handle(context)
 })
 
 Route.get('/graphiql', (context) => {
-  return GraphQLServer.handleUI(context, { endpointURL: '/' })
+  return GraphQLServer.handleUI(context)
 })
+
+// or add options (example)
+Route.get("/graphiql", (context) => {
+  return GraphQLServer.handleUI(context, {
+    passHeader: `'Authorization': '${context.request.header("Authorization")}'`
+  })
+})
+
+// or change options in file `config/graphql.js`
+
 ```
 
 ## Create Schema
@@ -57,17 +71,18 @@ module.exports = {
 
 ## Throw an error
 
-GraphQL handles differently errors. To provide a GraphQL Compliant error we recommend you to use the `GraphQLError` class.
+GraphQL handles errors by a different way.
+To provide a GraphQL Compliant error we recommend you to use the `GraphQLError` class.
 
 ```js
 // app/Resolvers/Hello.js
 
-const GraphQLError = use('Adonis/Addons/GraphQLError')
+const GraphQLError = use('GraphQLError')
 
 module.exports = {
   Query: {
     hello: function () {
-      throw new GraphQLError('message', [...])
+      throw new GraphQLError('Error Message', [...])
     }
   }
 }
@@ -79,6 +94,6 @@ If you are using the Adonis Validation Provider your code must look like the exa
 const validation = await validateAll(data, rules)
 
 if (validation.fails()) {
-  throw new GraphError('Validation Failed', validation.messages())
+  throw new GraphQLError('Validation Failed', validation.messages())
 }
 ```
