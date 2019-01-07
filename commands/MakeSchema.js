@@ -19,7 +19,7 @@ class MakeSchema extends Command {
    * @return {string}
    */
   static get signature () {
-    return `make:gschema { name: Name of the schema }`
+    return 'make:gschema { name: Name of the schema }'
   }
 
   /**
@@ -38,7 +38,7 @@ class MakeSchema extends Command {
    *
    * @param  {object}   args
    *
-   * @return {void}
+   * @return {Promise<void>}
    */
   async handle ({ name }) {
     const templatePath = join(__dirname, '../templates/Schema.mustache')

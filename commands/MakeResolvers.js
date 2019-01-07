@@ -19,7 +19,7 @@ class MakeSchema extends Command {
    * @return {string}
    */
   static get signature () {
-    return `make:gresolvers { name: Name of resolvers }`
+    return 'make:gresolvers { name: Name of resolvers }'
   }
 
   /**
@@ -38,7 +38,7 @@ class MakeSchema extends Command {
    *
    * @param  {object}   args
    *
-   * @return {void}
+   * @return {Promise<void>}
    */
   async handle ({ name }) {
     const templatePath = join(__dirname, '../templates/Resolvers.mustache')
