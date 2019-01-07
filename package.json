@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "apollo-server-adonis": "^1.3.2",
-    "graphql": "0.13.1",
-    "graphql-tools": "^2.18.0",
+    "graphql": "14.0.2",
+    "graphql-tools": "^4.0.3",
     "lodash": "^4.17.4",
     "merge-graphql-schemas": "^1.4.0"
   },
@@ -18,6 +18,6 @@
     "@adonisjs/ace": "^5.0.0",
     "@adonisjs/fold": "^4.0.5",
     "@slynova/eslint-config": "^1.0.3",
-    "eslint": "^4.19.0"
+    "eslint": "^5.12.0"
   }
 }
