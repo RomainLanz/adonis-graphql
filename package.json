@@ -1,6 +1,6 @@
 {
   "name": "adonis-graphql",
-  "version": "1.0.1-alpha-3",
+  "version": "1.0.1-alpha-4",
   "description": "GraphQL Provider for AdonisJs Framework",
   "main": "src/index.js",
   "license": "MIT",
