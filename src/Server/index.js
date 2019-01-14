@@ -13,10 +13,15 @@ const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schema
 
 class GraphQLServer {
   constructor (config) {
-    const typeDefs = mergeTypes(fileLoader(config.get('graphql.schema'), { recursive: true }))
-    const resolvers = mergeResolvers(fileLoader(config.get('graphql.resolvers')))
+    try {
+      const typeDefs = mergeTypes(fileLoader(config.get('graphql.schema'), { recursive: true }))
+      const resolvers = mergeResolvers(fileLoader(config.get('graphql.resolvers')))
 
-    this.$schema = makeExecutableSchema({ typeDefs, resolvers })
+      this.$schema = makeExecutableSchema({ typeDefs, resolvers })
+    } catch (e) {
+      console.log(e.stack)
+      throw e
+    }
 
     this.$options = config.get('graphql.options')
   }
