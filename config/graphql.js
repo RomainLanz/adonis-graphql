@@ -8,6 +8,6 @@ module.exports = {
     endpointURL: '/',
   },
 
-  schema: join(__dirname, '..app/Schema'),
+  schema: join(__dirname, '../app/Schema'),
   resolvers: join(__dirname, '../app/Resolvers'),
 }
