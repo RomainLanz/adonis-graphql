@@ -98,10 +98,10 @@ if (validation.fails()) {
 }
 ```
 
-## Reload dev server on schema updates
+## Reload dev server on schema changes
 
 By default, Adonis will not reload the development server when `.graphql` files are saved. To change
-behavior, you can add the extension to your serve command:
+this behavior, you can add the extension to your serve command:
 
 ```
 adonis serve --dev -e graphql
