@@ -97,3 +97,12 @@ if (validation.fails()) {
   throw new GraphQLError('Validation Failed', validation.messages())
 }
 ```
+
+## Reload dev server on schema updates
+
+By default, Adonis will not reload the development server when `.graphql` files are saved. To change
+behavior, you can add the extension to your serve command:
+
+```
+adonis serve --dev -e graphql
+```
