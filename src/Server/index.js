@@ -18,7 +18,7 @@ class GraphQLServer {
 
     this.$schema = makeExecutableSchema({ typeDefs, resolvers })
 
-    this.$options = config.get('graphql.options')
+    this.$options = config.get('graphql.options') || {}
   }
 
   $handleError (error) {
