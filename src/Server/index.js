@@ -15,8 +15,10 @@ class GraphQLServer {
   constructor (config) {
     const typeDefs = mergeTypes(fileLoader(config.get('graphql.schema'), { recursive: true }))
     const resolvers = mergeResolvers(fileLoader(config.get('graphql.resolvers')))
+    const directivesPath = config.get('graphql.directives')
+    const directiveResolvers = directivesPath && mergeResolvers(fileLoader(directivesPath))
 
-    this.$schema = makeExecutableSchema({ typeDefs, resolvers })
+    this.$schema = makeExecutableSchema({ typeDefs, resolvers, directiveResolvers })
 
     this.$options = config.get('graphql.options') || {}
   }
